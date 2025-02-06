@@ -21,9 +21,21 @@ public class FoodRequest {
     // Optional URL to the food image.
     private String foodImage;
 
+    //    // The associated menu's identifier; using Long to reference the Menu entity.
+    @NotNull(message = "Menu ID is required")
+    private Long menuId;
+    public Long getMenuId() {
+        return menuId;
+    }
+    public String getName() {
+        return name;
+    }
 
-//    // The associated menu's identifier; using Long to reference the Menu entity.
-//    @NotNull(message = "Menu ID is required")
-//    private Long menuId;
+    public BigDecimal getPrice() {
+        return price;
+    }
 
+    public String getFoodImage() {
+        return foodImage;
+    }
 }

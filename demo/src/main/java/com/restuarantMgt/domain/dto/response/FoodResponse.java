@@ -39,8 +39,7 @@ public static FoodResponse from(Food food){
     response.name = food.getName();
     response.price = food.getPrice();
     response.foodImage = food.getFoodImage();
-
-
+    response.menuId = food.getMenu().getId();
     response.createdAt = food.getCreatedAt();
     response.updatedAt = food.getUpdatedAt();
 

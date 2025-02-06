@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -34,7 +36,7 @@ public class MenuResponse {
     private LocalDateTime updatedAt;
 
     // List of Food items associated with this Menu, using FoodResponse to keep the response structure clear
- //   private List<FoodResponse> foods;
+    private List<FoodResponse> foods;
 
     public static MenuResponse from(Menu menu) {
         MenuResponse response = new MenuResponse();
@@ -54,12 +56,12 @@ public class MenuResponse {
 //        response.setUpdatedAt(menu.getUpdatedAt());
 
 //         Convert the list of Food entities to a list of FoodResponse DTOs
-//        if (menu.getFoods() != null && !menu.getFoods().isEmpty()) {
-//            List<FoodResponse> foodResponses = menu.getFoods().stream()
-//                    .map(FoodResponse::from)
-//                    .collect(Collectors.toList());
-//            response.setFoods(foodResponses);
-//        }
+        if (menu.getFoods() != null && !menu.getFoods().isEmpty()) {
+            List<FoodResponse> foodResponses = menu.getFoods().stream()
+                    .map(FoodResponse::from)
+                    .collect(Collectors.toList());
+            response.foods =foodResponses;
+        }
 
         return response;
     }

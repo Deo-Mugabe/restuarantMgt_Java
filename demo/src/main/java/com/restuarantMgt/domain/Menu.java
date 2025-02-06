@@ -44,8 +44,16 @@ public class Menu {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-//    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Food> foods;
+    @OneToMany(mappedBy = "menu")  // The "menu" field in the Food entity represents the relationship
+    private List<Food> foods;  // A menu can contain many food items
+
+    public List<Food> getFoods() {
+        return foods;
+    }
+
+    public void setFoods(List<Food> foods) {
+        this.foods = foods;
+    }
 
     public Long getId() {
         return id;

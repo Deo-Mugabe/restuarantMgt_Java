@@ -31,10 +31,14 @@ public class Food {
 ////  @Column(name = "food_id", length = 50, nullable = false, unique = true)
 ////  private String foodId;
 //
-//  // Many-to-One relationship: multiple Foods belong to one Menu
-////  @ManyToOne(optional = false)
-////  @JoinColumn(name = "menu_id", nullable = false)
-////  private Menu menu;
+  //Many-to-One relationship: multiple Foods belong to one Menu
+//  @ManyToOne(optional = false)
+//  @JoinColumn(name = "menu_id", nullable = false)
+//  private Menu menu;
+
+  @ManyToOne
+  @JoinColumn(name = "menu_id") // Foreign key column in the Food table
+  private Menu menu;  // Each food item belongs to a Menu
 
   @CreationTimestamp
   @Column(name = "created_at", nullable = false, updatable = false)
@@ -43,6 +47,18 @@ public class Food {
   @UpdateTimestamp
   @Column(name = "updated_at", nullable = false)
   private LocalDateTime updatedAt;
+
+  public Long getId() {
+    return id;
+  }
+
+  public Menu getMenu() {
+    return menu;
+  }
+
+  public void setMenu(Menu menu) {
+    this.menu = menu;
+  }
 
   // Getters and Setters
   public String getName() {
@@ -64,6 +80,30 @@ public class Food {
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
+
+  public void setFoodImage(String foodImage) {
+    this.foodImage = foodImage;
+  }
+
+  public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
+
+  public void setUpdatedAt(LocalDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
 
 //  public String getFoodId() {
 //    return foodId;
