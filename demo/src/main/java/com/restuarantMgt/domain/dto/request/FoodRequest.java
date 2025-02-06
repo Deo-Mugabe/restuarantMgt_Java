@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class FoodRequest {
 
@@ -14,7 +16,7 @@ public class FoodRequest {
 
     // The price of the food; must be provided.
     @NotNull(message = "Price is required")
-    private Double price;
+    private BigDecimal price;
 
     // Optional URL to the food image.
     private String foodImage;

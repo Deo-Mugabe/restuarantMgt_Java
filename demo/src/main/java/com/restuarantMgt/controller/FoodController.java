@@ -1,15 +1,13 @@
 package com.restuarantMgt.controller;
 
+import com.restuarantMgt.domain.dto.request.FoodRequest;
 import com.restuarantMgt.domain.dto.response.FoodResponse;
 import com.restuarantMgt.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,5 +34,11 @@ public class FoodController {
     public ResponseEntity<FoodResponse> getFoodById(@PathVariable("food_id") Long id){
         FoodResponse response = foodService.getFoodById(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> createFood(@RequestBody FoodRequest request){
+        foodService.createFood(request);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

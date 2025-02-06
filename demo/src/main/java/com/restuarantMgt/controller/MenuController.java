@@ -15,21 +15,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping("/api/menus")
 public class MenuController {
 
-//    private final MenuService menuService;
-//
-//    @GetMapping
-//    public ResponseEntity<List<MenuResponse>> getAllMenus(){
-//        List<MenuResponse> responses = menuService.getAllMenus();
-//        return new ResponseEntity<>(responses, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/{menu_id}")
-//    public ResponseEntity<MenuResponse> getMenuById(@PathVariable("menu_id") Long id){
-//        MenuResponse response = menuService.getMenuById(id);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
+    private final MenuService menuService;
+
+    public MenuController(MenuService menuService) {
+        this.menuService = menuService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<MenuResponse>> getAllMenus(){
+        List<MenuResponse> responses = menuService.getAllMenus();
+        return new ResponseEntity<>(responses, HttpStatus.OK);
+    }
+
+    @GetMapping("/{menu_id}")
+    public ResponseEntity<MenuResponse> getMenuById(@PathVariable("menu_id") Long id){
+        MenuResponse response = menuService.getMenuById(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

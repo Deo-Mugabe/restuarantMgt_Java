@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
@@ -19,7 +20,7 @@ public class FoodResponse {
     private String name;
 
     // Price of the food item
-    private Double price;
+    private BigDecimal price;
 
     // URL to the food image (optional)
     private String foodImage;
@@ -33,23 +34,17 @@ public class FoodResponse {
     // Timestamp when the Food record was last updated
     private LocalDateTime updatedAt;
 
-    public static FoodResponse from(Food food){
-        FoodResponse response = new FoodResponse();
-        response.setId(food.getId());
-        response.setName(food.getName());
-        response.setPrice(food.getPrice());
-        response.setFoodImage(food.getFoodImage());
+public static FoodResponse from(Food food){
+    FoodResponse response = new FoodResponse();
+    response.name = food.getName();
+    response.price = food.getPrice();
+    response.foodImage = food.getFoodImage();
 
 
-//        // Set the menuId if the Food has an associated Menu
-//        if (food.getMenu() != null) {
-//            response.setMenuId(food.getMenu().getId());
-//        }
-
-        response.setCreatedAt(food.getCreatedAt());
-        response.setUpdatedAt(food.getUpdatedAt());
+    response.createdAt = food.getCreatedAt();
+    response.updatedAt = food.getUpdatedAt();
 
 
-        return response;
+    return response;
     }
 }

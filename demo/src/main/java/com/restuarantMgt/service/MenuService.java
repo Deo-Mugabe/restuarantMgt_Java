@@ -5,7 +5,7 @@ import com.restuarantMgt.domain.dto.response.MenuResponse;
 import java.util.List;
 
 public interface MenuService {
-//    List<MenuResponse> getAllMenus();
-//
-//    MenuResponse getMenuById(Long id);
+    List<MenuResponse> getAllMenus();
+
+    MenuResponse getMenuById(Long id);
 }

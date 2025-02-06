@@ -10,23 +10,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Service
 public class MenuServiceImpl implements MenuService {
 
-//    private final MenuRepository menuRepository;
-//    @Override
-//    public List<MenuResponse> getAllMenus() {
-//        return menuRepository.findAll()
-//                .stream()
-//                .map(MenuResponse::from)
-//                .toList();
-//    }
-//
-//    @Override
-//    public MenuResponse getMenuById(Long id) {
-//        Menu menu = menuRepository.findById(id)
-//                .orElseThrow(()-> new NotFoundException("Menu not Found"));
-//        return MenuResponse.from(menu);
-//    }
+    private final MenuRepository menuRepository;
+
+    public MenuServiceImpl(MenuRepository menuRepository) {
+        this.menuRepository = menuRepository;
+    }
+
+    @Override
+    public List<MenuResponse> getAllMenus() {
+        return menuRepository.findAll()
+                .stream()
+                .map(MenuResponse::from)
+                .toList();
+    }
+
+    @Override
+    public MenuResponse getMenuById(Long id) {
+        Menu menu = menuRepository.findById(id)
+                .orElseThrow(()-> new NotFoundException("Menu not Found"));
+        return MenuResponse.from(menu);
+    }
 }
